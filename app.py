@@ -1,9 +1,13 @@
-# Import libraries
+import streamlit as st
 import pandas as pd
 import datetime as dt
 import yfinance as yf
-from prophet import Prophet  # Updated import
-import matplotlib.pyplot as plt
+from prophet import Prophet
+import plotly.graph_objects as go
+
+# Disable auto-reload
+st.set_page_config(page_title="Prophet App", layout="wide")
+st.cache_resource.clear()
 
 # Set parameters
 ticker = 'AAPL'
@@ -26,9 +30,8 @@ model.fit(data)
 future = model.make_future_dataframe(periods=30)
 forecast = model.predict(future)
 
-# Plot predictions
-model.plot(forecast)
-plt.title(f"Predicted Stock Price of {ticker} using Prophet")
-plt.xlabel("Date")
-plt.ylabel("Close Price")
-plt.show()
+# Plot predictions using Plotly
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=forecast['ds'], y=forecast['yhat'], mode='lines', name='Predicted'))
+fig.add_trace(go.Scatter(x=data['ds'], y=data['y'], mode='markers', name='Actual'))
+st.plotly_chart(fig)
