@@ -1,7 +1,7 @@
 # Import libraries
 import pandas as pd
 import datetime as dt
-from pandas_datareader import DataReader
+import yfinance as yf  # Replace pandas_datareader with yfinance
 from fbprophet import Prophet
 import matplotlib.pyplot as plt
 
@@ -11,8 +11,8 @@ num_years = 20
 start_date = dt.datetime.now() - dt.timedelta(days=365.25 * num_years)
 end_date = dt.datetime.now()
 
-# Fetch stock data
-data = DataReader(ticker, 'yahoo', start_date, end_date)
+# Fetch stock data using yfinance
+data = yf.download(ticker, start=start_date, end=end_date)
 
 # Prepare data for Prophet
 data.reset_index(inplace=True)
