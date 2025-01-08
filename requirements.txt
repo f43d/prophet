@@ -1,6 +1,5 @@
 streamlit==1.41.1
 pandas==2.2.3
-git+https://github.com/your-username/pandas-datareader.git
+yfinance==0.2.37
 fbprophet==1.1.6
 matplotlib==3.10.0
-packaging>=24.0
