@@ -3,3 +3,4 @@ pandas==2.2.3
 yfinance==0.2.37
 prophet==1.1.5
 matplotlib==3.10.0
+numpy<2.0  # Add this line to pin NumPy to version 1.x
