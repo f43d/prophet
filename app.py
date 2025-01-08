@@ -1,8 +1,8 @@
 # Import libraries
 import pandas as pd
 import datetime as dt
-import yfinance as yf  # Replace pandas_datareader with yfinance
-from fbprophet import Prophet
+import yfinance as yf
+from prophet import Prophet  # Updated import
 import matplotlib.pyplot as plt
 
 # Set parameters
